@@ -5,4 +5,4 @@
   - Celia Díaz Fernández
   - María Jesús Dueñas Recuero
   - Mario Martín Alonso
-  - Gokai Iseri
+  - Gökay Iseri
