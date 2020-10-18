@@ -3,5 +3,6 @@
   - María Blanco González-Mohíno
   - Adrián Ruiz Esteban
   - Celia Díaz Fernández
+  - María Jesús Dueñas Recuero
   - Mario Martín Alonso
   - Gokai Iseri
