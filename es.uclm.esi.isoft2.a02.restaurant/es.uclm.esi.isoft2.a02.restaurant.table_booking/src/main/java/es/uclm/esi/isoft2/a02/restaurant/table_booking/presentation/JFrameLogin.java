@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.User;
 import es.uclm.esi.isoft2.a02.restaurant.table_booking.domain.LoginAgent;
-import es.uclm.esi.isoft2.a02.restaurant.table_booking.domain.User;
 
 import java.awt.Window.Type;
 import javax.swing.JLabel;
