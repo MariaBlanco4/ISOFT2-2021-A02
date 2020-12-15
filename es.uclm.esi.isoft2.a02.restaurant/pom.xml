@@ -26,8 +26,7 @@
     </dependency>
   </dependencies>
   <modules>
-
+  	<module>es.uclm.esi.isoft2.a02.restaurant.table_booking</module>
   	<module>es.uclm.esi.isoft2.a02.restaurant.dependencies</module>
-  	<module>es.uclm.esi.isoft2.a02.restaurant.making_orders</module>
   </modules>
 </project>
