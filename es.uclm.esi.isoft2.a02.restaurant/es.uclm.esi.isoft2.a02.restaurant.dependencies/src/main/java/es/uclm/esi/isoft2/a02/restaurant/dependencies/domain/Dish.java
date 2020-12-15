@@ -10,7 +10,7 @@ import es.uclm.esi.isoft2.a02.restaurant.dependencies.persistence.Broker;
 public class Dish {
 
 	private String name;
-	private String[] ingredients;
+	private String[] ingredients = new String[6];
 	private double price;
 	private String type;
 
@@ -52,12 +52,11 @@ public class Dish {
 	 * @throws Exception 
 	 */
 	public static Dish readDish(String name) throws Exception{
-		String sql = "SELECT * FROM Dish WHERE name = '"+name+"';";
+		String sql = "SELECT * FROM A02dbservice.Dish WHERE name = '"+name+"';";
+		Dish ds =  null;
 		Vector<Object> auxVector;
-		Broker.getBroker();
 		Vector<Object> vBroker = Broker.getBroker().select(sql);
-		Dish ds =  new Dish(name);
-		System.out.println(vBroker);
+		
 		auxVector = new Vector<Object>();
 
 		if (vBroker.size() >= 1) {
@@ -72,7 +71,6 @@ public class Dish {
 
 	public Dish(String name, double price, String type,String ingredient_1, String ingredient_2, String ingredient_3,
 			String ingredient_4, String ingredient_5, String ingredient_6) {
-		super();
 		this.name = name;
 		this.ingredients[0] = ingredient_1;
 		this.ingredients[1] = ingredient_2;

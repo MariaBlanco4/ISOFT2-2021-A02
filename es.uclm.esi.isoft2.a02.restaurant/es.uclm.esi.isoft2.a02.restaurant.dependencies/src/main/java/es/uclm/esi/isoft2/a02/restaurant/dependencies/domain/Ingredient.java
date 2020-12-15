@@ -40,7 +40,7 @@ public class Ingredient {
 	 * @param name
 	 */
 	public static Ingredient readIngredient(String name) throws Exception{
-		String sql = "SELECT name FROM Ingredient WHERE name = '" + name + "';";
+		String sql = "SELECT * FROM Ingredient WHERE name = '" + name + "';";
 		Ingredient ing = null;
 		Vector<Object> auxVector;
 		Vector<Object> vBroker = Broker.getBroker().select(sql);
@@ -60,8 +60,14 @@ public class Ingredient {
 	 * @param amount
 	 */
 	public int updateIngredient(String name, int amount) throws Exception{
-		String sql = "UPDATE amount FROM Ingredient WHERE name = '"+name+"' and amount = "+amount+";";
-		return Broker.getBroker().update(sql);
+		String sql = "UPDATE A02dbservice.Ingredient SET amount="+ amount + " WHERE name = '"+name+"';";
+		int ing = 0;
+		try {
+		ing = Broker.getBroker().update(sql);
+		}catch(Exception e) {
+			ing = 0;
+		}
+		return ing;
 	}
 
 	public boolean checkAmountIngredient() {

@@ -32,6 +32,7 @@ import javax.swing.text.MaskFormatter;
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.Control_operational_table;
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.State;
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.Turn;
+import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.User;
 import es.uclm.esi.isoft2.a02.restaurant.making_orders.domain.Control_notification;
 import es.uclm.esi.isoft2.a02.restaurant.making_orders.domain.Control_order;
 
@@ -131,28 +132,12 @@ public class JFrameTakeOrder extends JFrame {
 	private JButton btnSendMessage;
 	private JButton btnGetMessage;
 	private JTextField spTable;
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFrameTakeOrder frame = new JFrameTakeOrder();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 * @throws ParseException 
 	 */
-	public JFrameTakeOrder() throws ParseException {
+	public JFrameTakeOrder(User actualUser) throws ParseException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1036, 808);
 		contentPane = new JPanel();
@@ -681,6 +666,7 @@ public class JFrameTakeOrder extends JFrame {
 		contentPane.add(lblIdUser, gbc_lblIdUser);
 		
 		textID_USER = new JTextField();
+		textID_USER.setEnabled(false);
 		GridBagConstraints gbc_textID_USER = new GridBagConstraints();
 		gbc_textID_USER.insets = new Insets(0, 0, 5, 5);
 		gbc_textID_USER.fill = GridBagConstraints.HORIZONTAL;
@@ -688,6 +674,7 @@ public class JFrameTakeOrder extends JFrame {
 		gbc_textID_USER.gridy = 19;
 		contentPane.add(textID_USER, gbc_textID_USER);
 		textID_USER.setColumns(10);
+		textID_USER.setText(actualUser.getId() + "");
 		
 		btnSendMessage = new JButton("Send message");
 		btnSendMessage.addActionListener(new ActionListener() {

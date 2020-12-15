@@ -35,47 +35,48 @@ public class Control_order {
 		String type; //for each string in ingredients
 		
 		String[] current_ingredients = new String[6]; // To introduce each [] of ingredients 
-		int order = 0; //Return, if == 0 : , if == -1 : error 
+		int order = 0; //Return, if == 0 : proper , if == -1 : error 
 		
 		if(ot != null) {
 			state = ot.getState();
 			if(state == State.Asking) {
 				od = new Order(n_table, date); //Here we need to create the Order object
-				for(int i = 0 ; i < dishes.length && order != -1; i++) {
+				for(int i = 0 ; i < dishes.length && order != -1 || dishes[i+1]!=null; i++) {
 					ds = Dish.readDish(dishes[i]);
 					if(ds != null) {
 						current_ingredients = ds.getIngredients(); //Array of each ingredient
-						System.out.println("Entra 2");
-						for(int j = 0; j<current_ingredients.length && order !=-1; j++) {
-							System.out.println(current_ingredients[j]);
+						for(int j = 0; j<current_ingredients.length && order !=-1 && dishes!=null; j++) {
 							if((ing = Ingredient.readIngredient(current_ingredients[j])) != null) {
 								if(ing.checkAmountIngredient() == false) {
-									return -1;
+									order = -1;
 								}
 							}	
 						}
 						type = ds.getType();
 						switch(type) {
-						case "starter":
-							od.addStarter(ds.getName());
-							break;
-						case "firstCourse":
-							od.addFirstCourse(ds.getName());
-							break;
-						case "secondCourse":
-							od.addSecondCourse(ds.getName());
-							break;
-						case "dessert":
-							od.addDessert(ds.getName());
-							break;
+							case "starter":
+								od.addStarter(ds.getName());
+								break;
+							case "first_course":
+								od.addFirstCourse(ds.getName());
+								break;
+							case "second_course":
+								od.addSecondCourse(ds.getName());
+								break;
+							case "dessert":
+								od.addDessert(ds.getName());
+								break;
 						}
-					}else {
+					} else {
 						order = -1;
 						break;
 					}
+					if(dishes[i+1]==null && i<(dishes.length-1)) {
+						break;
+					}
 				}
-				//Drink for
-				for(int i = 0 ; i<drinks.length && order !=-1; i++) {
+
+				for(int i = 0 ; i<drinks.length && order !=-1 && drinks!=null; i++) {
 					if((dr = Drink.readDrink(drinks[i])) != null){
 						if(!dr.checkAmountDrink()) {
 							order = -1;
@@ -83,9 +84,12 @@ public class Control_order {
 						}else {
 							od.addDrink(dr.getName());
 						}
+					} if(drinks[i+1]==null && i<(drinks.length-1)) {
+						break;
 					}
 				}
-				for(int i = 0 ; i < dishes.length && order != -1; i++) {
+				
+				for(int i = 0 ; i < dishes.length && order != -1 && dishes!=null;  i++) {
 					if((ds = Dish.readDish(dishes[i])) != null) {
 						current_ingredients =ds.getIngredients();
 						for(int j=0 ; j<current_ingredients.length && order != -1; j++) {
@@ -94,40 +98,47 @@ public class Control_order {
 									order = -1;
 									break;
 								}else {
-									if((ing.updateIngredient(ing.getName(), (ing.getAmount()-1))) == -1) {
+									if((ing.updateIngredient(ing.getName(), (ing.getAmount()-1))) == 0) {
 										order = -1;
 										break;
 									}
 								}
+							} if(dishes[i+1]==null && i<(dishes.length-1)){
+								break;
 							}
 						}
 						
 					}
 				}
-				for(int i = 0 ; i <drinks.length && order != -1 ; i++) {
+				
+				for(int i = 0 ; i <drinks.length && order != -1 && drinks!=null; i++) {
 					if((dr = Drink.readDrink(drinks[i])) != null) {
 						if(!dr.checkAmountDrink()) {
-							order =-1;
+							order = -1;
 							break;
 						}else {
-							if((dr.updateDrink(dr.getName(), (dr.getAmount()-1))) == -1){
+							if((dr.updateDrink(dr.getName(), (dr.getAmount()-1))) == 0){
 								order = -1;
 								break;
 							}
 						}
 					}
+					if (drinks[i+1]==null && i<(drinks.length-1)) {
+						break;
+					}
 				}
+				
 				if((od.insertOrder(od.getDrinks(), od.getStarters(), od.getFirstCourses(), od.getSecondCourses(),
-								od.getDesserts(), n_table, date)) ==-1) {
+								od.getDesserts(), n_table, date)) == 0) {
 					order = -1;
-				}else {
+				} else {
 					ot.setState(State.Waiting_for_food);
-					if((ot.updateS(n_table, date, turn, ot.getState())) == -1) {
+					if((ot.updateS(n_table, date, turn, ot.getState())) == 0) {
 						order = -1;
 					}
 				}
-			}else order = -1;
-		}else order=-1;
+			} else order = -1;
+		} else order=-1;
 		
 		return order;
 	}

@@ -33,7 +33,7 @@ public class Drink {
 	 * @param name
 	 */
 	public static Drink readDrink(String name) throws SQLException, Exception{
-		String sql = "SELECT * FROM Drink WHERE name= " + name + ";";
+		String sql = "SELECT * FROM Drink WHERE name= '" + name + "';";
 		Drink auxDrink = null;
 		Vector<Object> auxVector;
 		Vector<Object> vBroker = Broker.getBroker().select(sql);

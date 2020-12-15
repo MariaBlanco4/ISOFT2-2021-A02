@@ -126,18 +126,89 @@ public class Order {
 	 */
 	public int insertOrder(String[] drinks, String[] starters, String[] firstCourse, String[] secondCourse,
 			String[] dessert, int id_operational_table, String date) throws Exception{
-
-		String sql = "INSERT INTO Order (id_operational_table,date,drink_1, drink_2 ,drink_3 , drink_4, drink_5, drink_6,"
-				+ "starter_1, starter_2, starter_3, starter_4, starter_5,starter_6, firstCourse_1, firstCourse_2, firstCourse_3,firstCourse_4,firstCourse_5,firstCourse_6,"
-				+ "secondCourse_1,secondCourse_2,secondCourse_3,secondCourse_4,secondCourse_5,secondCourse_6,"
-				+ "dessert_1, dessert_2, dessert_3, dessert_4, dessert_5, dessert_6) VALUES (" +id_operational_table+", '"+date+"',"
-				+"'"+drinks[0]+"','" +drinks[1]+"','" +drinks[2]+"','" +drinks[3]+"','" +drinks[4]+ "','" +drinks[5]+","
-				+"'"+starters[0]+"','" +starters[1]+"','" +starters[2]+"','" +starters[3]+"','" +starters[4]+"','"+starters[5]+"',"
-				+"'"+firstCourse[0]+"','"+firstCourse[1]+"','"+firstCourse[2]+",'"+firstCourse[3]+"','"+firstCourse[4]+"','"+firstCourse[5]+"',"
-				+"'"+secondCourse[0]+"', '"+secondCourse[1]+"','"+secondCourse[2]+"','"+secondCourse[3]+"','"+secondCourse[4]+"','"+secondCourse[5]+"',"
-				+"'"+desserts[0]+"', '"+desserts[1]+"', '"+desserts[2]+"', '"+desserts[3]+"', '"+desserts[4]+"', '"+desserts[5]+"');";
-		System.out.println(sql);
-		return Broker.getBroker().insert(sql);	
+		int order = 0;
+		String sql = "INSERT INTO A02dbservice.Order (id_operational_table,date";
+		for(int i = 0; i<drinks.length; i++) {
+			if(drinks[i] != null) {
+				sql = sql + ", drink_"+(i+1);
+			}else {
+				break;
+			}
+		}
+		for(int i = 0; i<starters.length; i++) {
+			if(starters[i] != null) {
+				sql = sql + ", starter_"+(i+1);
+			}else {
+				break;
+			}
+		}
+		for(int i = 0; i<firstCourse.length; i++) {
+			if(firstCourse[i] != null) {
+				sql = sql + ", firstCourse_"+(i+1);
+			}else {
+				break;
+			}
+		}
+		for(int i = 0; i<secondCourse.length; i++) {
+			if(secondCourse[i] != null) {
+				sql = sql + ", secondCourse_"+(i+1);
+			}else {
+				break;
+			}
+		}
+		for(int i = 0; i<dessert.length; i++) {
+			if(dessert[i] != null) {
+				sql = sql + ", dessert_"+(i+1);
+			}else {
+				break;
+			}
+		}
+		
+		sql = sql + ") VALUES ("+id_operational_table+", '"+date+"'";
+		
+		for(int i = 0; i<drinks.length; i++) {
+			if(drinks[i] != null) {
+				sql = sql + ", '" + drinks[i] + "'";
+			}else {
+				break;
+			}
+		}
+		for(int i = 0; i<starters.length; i++) {
+			if(starters[i] != null) {
+				sql = sql + ", '" + starters[i] + "'";
+			}else {
+				break;
+			}
+		}
+		for(int i = 0; i<firstCourse.length; i++) {
+			if(firstCourse[i] != null) {
+				sql = sql + ", '" + firstCourse[i] + "'";
+			}else {
+				break;
+			}
+		}
+		for(int i = 0; i<secondCourse.length; i++) {
+			if(secondCourse[i] != null) {
+				sql = sql + ", '" + secondCourse[i] + "'";
+			}else {
+				break;
+			}
+		}
+		for(int i = 0; i<dessert.length; i++) {
+			if(dessert[i] != null) {
+				sql = sql + ", '" + dessert[i] + "'";
+			}else {
+				break;
+			}
+		}
+		sql = sql + ");";
+		try {
+		order = Broker.getBroker().insert(sql);	
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			order = 0;
+		}
+		return order;
 	}
 
 

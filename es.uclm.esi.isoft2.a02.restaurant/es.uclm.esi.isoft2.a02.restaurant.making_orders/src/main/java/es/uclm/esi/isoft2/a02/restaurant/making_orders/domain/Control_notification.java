@@ -17,7 +17,7 @@ public class Control_notification {
 		//destination => id of the destination
 		if(User.read(destination) != null){
 			notify = Notification.insertNotification(message, origin, destination);
-			not = true;			
+			not = true;
 		}else{
 			not = false;
 		}

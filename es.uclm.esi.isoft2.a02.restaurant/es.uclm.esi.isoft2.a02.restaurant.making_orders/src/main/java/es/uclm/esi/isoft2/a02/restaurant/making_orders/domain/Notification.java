@@ -11,7 +11,7 @@ public class Notification {
 	private int origin;
 	private String message;
 	private int destination;
-	private int id_notification; //autoincremental
+	private int id_notification; 
 
 	public int getOrigin() {
 		return this.origin;
@@ -49,8 +49,7 @@ public class Notification {
 	 * 
 	 * @param destination
 	 */
-	public static Notification[] readNotification(int destination) throws SQLException, Exception { 
-		//A VER PARGUEGLA Q DEVUELVE UNA STRING
+	public static Notification[] readNotification (int destination) throws SQLException, Exception { 
 		String sql = "SELECT id_notification, message, origin, destination FROM Notification WHERE destination= " + destination + ";";
 		Vector<Object> vBroker = Broker.getBroker().select(sql);
 		Notification[] auxNot = new Notification[(vBroker.size())];
@@ -65,8 +64,10 @@ public class Notification {
 				System.out.println(auxNot[i].getMessage());
 			}
 		}
+		
 		return auxNot; 
 	}
+	
 	public Notification(int origin, String message, int destination, int id_notification) {
 		super();
 		this.origin = origin;
@@ -84,6 +85,7 @@ public class Notification {
 		Broker.getBroker();
 		return Broker.delete(sql);
 	}
+	
 	/** 
 	 * @param message
 	 * @param origin
@@ -93,8 +95,15 @@ public class Notification {
 	public static int insertNotification(String message, int origin, int destination) throws Exception{
 		String sql = "INSERT INTO Notification (message, origin, destination) VALUES('"+message+"',"+origin+","+destination+");";
 		Broker.getBroker();
-		return Broker.insert(sql);
+		int nt = 0;
+		try {
+			nt=Broker.insert(sql);
+		} catch (Exception e) {
+			nt=0;
+		}
+		return nt;
 	}
+	
 	/*
 	 * Constructor to get the notification
 	 */
@@ -102,6 +111,4 @@ public class Notification {
 		super();
 		this.destination = destination;
 	}
-
-
 }
