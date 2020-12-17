@@ -1,0 +1,9 @@
+es/uclm/esi/isoft2/a02/restaurant/dependencies/domain/Turn.class
+es/uclm/esi/isoft2/a02/restaurant/dependencies/domain/Drink.class
+es/uclm/esi/isoft2/a02/restaurant/dependencies/persistence/Broker.class
+es/uclm/esi/isoft2/a02/restaurant/dependencies/domain/State.class
+es/uclm/esi/isoft2/a02/restaurant/dependencies/domain/Dish.class
+es/uclm/esi/isoft2/a02/restaurant/dependencies/domain/Control_operational_table.class
+es/uclm/esi/isoft2/a02/restaurant/dependencies/domain/Order.class
+es/uclm/esi/isoft2/a02/restaurant/dependencies/domain/Operational_table.class
+es/uclm/esi/isoft2/a02/restaurant/dependencies/domain/Ingredient.class
