@@ -771,9 +771,9 @@ public class JFrameTakeOrder extends JFrame {
 		if(result == 0) {
 			showMessageDialog(null, "Order insert");
 		}else if(result == -1){
-			showMessageDialog(null, "Error making the order, something foes wrong");
+			showMessageDialog(null, "Error making the order, something goes wrong");
 		}else if(result == -2) {
-			showMessageDialog(null, "Error, some ingredient or drink doessn't exist");
+			showMessageDialog(null, "Error, some ingredient or drink doesn't exist");
 		}else if(result == -3) {
 			showMessageDialog(null, "No enough drink or food, we are replacing it");
 		}
