@@ -55,6 +55,8 @@ public class Control_orderTest {
 		Broker.getBroker().update("UPDATE Ingredient SET amount=10 WHERE name='oreo';");
 		Broker.getBroker().update("UPDATE Ingredient SET amount=10 WHERE name='egg';");
 		Broker.getBroker().update("UPDATE Ingredient SET amount=10 WHERE name='salt';");
+		Broker.getBroker().update("UPDATE Ingredient SET amount=10 WHERE name='sugar';");
+		Broker.getBroker().update("UPDATE Ingredient SET amount=10 WHERE name='ice_cream';");
 	}
 
 	@Test

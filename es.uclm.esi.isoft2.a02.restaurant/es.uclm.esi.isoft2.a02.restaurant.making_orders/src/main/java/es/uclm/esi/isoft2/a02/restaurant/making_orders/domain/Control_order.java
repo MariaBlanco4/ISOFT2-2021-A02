@@ -41,7 +41,7 @@ public class Control_order {
 			state = ot.getState();
 			if(state == State.Asking) {
 				od = new Order(n_table, date); //Here we need to create the Order object
-				for(int i = 0 ; i < dishes.length && order != -1 || dishes[i+1]!=null; i++) {
+				for(int i = 0 ; (i < dishes.length && order != -1) || ((i<(dishes.length-1) && dishes[i+1]!=null)); i++) {
 					ds = Dish.readDish(dishes[i]);
 					if(ds != null) {
 						current_ingredients = ds.getIngredients(); //Array of each ingredient
@@ -71,7 +71,7 @@ public class Control_order {
 						order = -1;
 						break;
 					}
-					if(dishes[i+1]==null && i<(dishes.length-1)) {
+					if(i < dishes.length && i<(dishes.length-1) && dishes[i+1]==null) {
 						break;
 					}
 				}
@@ -84,7 +84,7 @@ public class Control_order {
 						}else {
 							od.addDrink(dr.getName());
 						}
-					} if(drinks[i+1]==null && i<(drinks.length-1)) {
+					} if(i<(drinks.length-1) && drinks[i+1]==null) {
 						break;
 					}
 				}
@@ -103,7 +103,7 @@ public class Control_order {
 										break;
 									}
 								}
-							} if(dishes[i+1]==null && i<(dishes.length-1)){
+							} if(i<(dishes.length-1) && dishes[i+1]==null){
 								break;
 							}
 						}
@@ -123,11 +123,11 @@ public class Control_order {
 							}
 						}
 					}
-					if (drinks[i+1]==null && i<(drinks.length-1)) {
+					if (i<drinks.length-1 && drinks[i+1]==null) {
 						break;
 					}
 				}
-				
+				if(order !=-1 &&  order !=-2)
 				if((od.insertOrder(od.getDrinks(), od.getStarters(), od.getFirstCourses(), od.getSecondCourses(),
 								od.getDesserts(), n_table, date)) == 0) {
 					order = -1;
