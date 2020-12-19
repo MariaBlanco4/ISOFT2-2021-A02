@@ -35,6 +35,9 @@ public class Control_orderTest {
 		
 		Broker.getBroker().insert("INSERT INTO A02dbservice.Operational_table VALUES (6, 'T_Lunch', 'Paying', '20/04/2021', 6, 1);");
 		
+		Broker.getBroker().insert("INSERT INTO A02dbservice.Operational_table VALUES (3, 'T_Lunch', 'Asking', '18/03/2021', 6, 1);");
+		Broker.getBroker().insert("INSERT INTO A02dbservice.Order(id_operational_table,date,drink_1, drink_2,first_course_1) VALUES (3,'18/03/2021', 'nestea', 'cola','tortilla');");
+
 		dish0[0] = "tortilla";
 		dish0[1] = "carrot_cream";
 		dish0[2] = "oreo_shake";
@@ -54,7 +57,7 @@ public class Control_orderTest {
 		Broker.getBroker().update("UPDATE Ingredient SET amount=10 WHERE name='onion';");
 		Broker.getBroker().update("UPDATE Ingredient SET amount=10 WHERE name='oreo';");
 		Broker.getBroker().update("UPDATE Ingredient SET amount=10 WHERE name='egg';");
-		Broker.getBroker().update("UPDATE Ingredient SET amount=10 WHERE name='salt';");
+		Broker.getBroker().update("UPDATE Ingredient SET amount=10 WHERE name='salt';"); 
 	}
 
 	@Test
@@ -65,7 +68,13 @@ public class Control_orderTest {
 		assertEquals(-1, Control_order.checkOrder(6, "19/04/2021", Turn.T_Lunch, drink1, dish2));
 		assertEquals(-1, Control_order.checkOrder(6, "20/04/2021", Turn.T_Lunch, drink1, dish2));
 		assertEquals(-1, Control_order.checkOrder(10, "20/04/2021", Turn.T_Lunch, drink1, dish2));
-		
+
+	}
+	
+	@Test
+	public void testCharge_order() throws SQLException, Exception {
+		assertEquals(22, Control_order.charge_order(3, "18/03/2021", Turn.T_Lunch)); 
+		assertEquals(0, Control_order.charge_order(4, "18/03/2021", Turn.F_Dinner)); 
 	}
 
 }
