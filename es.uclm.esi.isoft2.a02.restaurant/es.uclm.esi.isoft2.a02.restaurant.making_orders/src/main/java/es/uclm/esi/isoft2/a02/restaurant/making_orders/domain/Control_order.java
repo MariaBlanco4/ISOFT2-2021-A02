@@ -80,7 +80,12 @@ public class Control_order {
 						}else {
 							od.addDrink(dr.getName());
 						}
-					} if(i<(drinks.length-1) && drinks[i+1]==null) {
+					} else {
+						order=-1;
+						break;
+					}
+					
+					if(i<(drinks.length-1) && drinks[i+1]==null) {
 						break;
 					}
 				}
@@ -90,7 +95,7 @@ public class Control_order {
 						current_ingredients =ds.getIngredients();
 						for(int j=0 ; j<current_ingredients.length && order != -1; j++) {
 							if((ing = Ingredient.readIngredient(current_ingredients[i])) != null) {
-								if(ing.getAmount() <= ing.getThreshold()) {
+								if(ing.getAmount() <= ing.getThreshold()) {//if of iteration 3
 									if((ing.updateIngredient(ing.getName(), 20)) == 0) {
 										order = -3;
 										break;
@@ -112,7 +117,7 @@ public class Control_order {
 				
 				for(int i = 0 ; i <drinks.length && order != -1 && order != -2 && order != -3 && drinks!=null; i++) {
 					if((dr = Drink.readDrink(drinks[i])) != null) {
-						if(dr.getAmount() <= dr.getThreshold()) {
+						if(dr.getAmount() <= dr.getThreshold()) {//if iteration 3
 							if((dr.updateDrink(dr.getName(), 20)) == 0) {
 								order = -3;
 								break;
