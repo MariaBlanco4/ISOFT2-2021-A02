@@ -62,13 +62,13 @@ public class Statistics {
 		
 		String sql1 = "WHERE name_statistic='take_command'";
 		Vector<Object> vBroker1 = Broker.getBroker().select(sql+sql1);
+		double sumTakeCommand = 0;
 		if(vBroker1.size() >= 1) {
-			auxVector = (Vector<Object>) vBroker1.elementAt(0);
-			double sumTakeCommand = 0;
-			for (int i = 0; i< auxVector.size(); i++){
-				sumTakeCommand += (Double) auxVector.elementAt(i);
+			for (int i = 0; i< vBroker1.size(); i++){
+				auxVector = (Vector<Object>) vBroker1.elementAt(i);
+				sumTakeCommand += (Double) auxVector.elementAt(2);
 			}
-			double avgTTakeCommand = sumTakeCommand / auxVector.size();
+			double avgTTakeCommand = sumTakeCommand / vBroker1.size();
 			stat.setTakeCommand(avgTTakeCommand);
 		}
 		
@@ -76,36 +76,39 @@ public class Statistics {
 		String sql2 = "WHERE name_statistic='preparation_time_meal'";
 		Vector<Object> vBroker2 = Broker.getBroker().select(sql+sql2);
 		if(vBroker2.size() >= 1) {
-			auxVector = (Vector<Object>) vBroker2.elementAt(0);
 			double sumPrepTimeMeal = 0;
-			for (int i = 0; i< auxVector.size(); i++){
-				sumPrepTimeMeal += (Double) auxVector.elementAt(i);
+					
+			for (int i = 0; i< vBroker2.size(); i++){
+				auxVector = (Vector<Object>) vBroker2.elementAt(i);
+				sumPrepTimeMeal += (Double) auxVector.elementAt(2);
 			}
-			double avgTPrepTM = sumPrepTimeMeal / auxVector.size();
+			double avgTPrepTM = sumPrepTimeMeal / vBroker2.size();
 			stat.setPreparationTimeMeal(avgTPrepTM);
 		}
 		
 		String sql3 = "WHERE name_statistic='time_delivery_note'";
 		Vector<Object> vBroker3 = Broker.getBroker().select(sql+sql3);
 		if(vBroker3.size() >= 1) {
-			auxVector = (Vector<Object>) vBroker3.elementAt(0);
+			
 			double sumTDeliveryNote = 0;
-			for (int i = 0; i< auxVector.size(); i++){
-				sumTDeliveryNote += (Double) auxVector.elementAt(i);
+			for (int i = 0; i< vBroker3.size(); i++){
+				auxVector = (Vector<Object>) vBroker3.elementAt(i);
+				sumTDeliveryNote += (Double) auxVector.elementAt(2);
 			}
-			double avgTTimeDelNote = sumTDeliveryNote / auxVector.size();
+			double avgTTimeDelNote = sumTDeliveryNote / vBroker3.size();
 			stat.setTimeDeliveryNote(avgTTimeDelNote);
 		}
 		
 		String sql4 = "WHERE name_statistic='preparation_time_table'";
 		Vector<Object> vBroker4 = Broker.getBroker().select(sql+sql4);
 		if(vBroker4.size() >= 1) {
-			auxVector = (Vector<Object>) vBroker3.elementAt(0);
+			
 			double sumPrepTimeTable = 0;
-			for (int i = 0; i< auxVector.size(); i++){
-				sumPrepTimeTable += (Double) auxVector.elementAt(i);
+			for (int i = 0; i< vBroker4.size(); i++){
+				auxVector = (Vector<Object>) vBroker3.elementAt(i);
+				sumPrepTimeTable += (Double) auxVector.elementAt(2);
 			}
-			double avgTPrepTimeTable = sumPrepTimeTable / auxVector.size();
+			double avgTPrepTimeTable = sumPrepTimeTable / vBroker4.size();
 			stat.setPreparationTimeTable(avgTPrepTimeTable);
 		}
 		
@@ -113,7 +116,13 @@ public class Statistics {
 	}
 	
 	public static int insertStatistics (String nameStatistics, double time) throws Exception {
+		int result = 0;
 		String sql = "INSERT INTO Statistics (name_statistic, time) VALUES ('" + nameStatistics + "', " + time + ");";
-		return Broker.getBroker().insert(sql);
+		try {
+		result = Broker.getBroker().insert(sql);
+		}catch(Exception e) {
+			result = 0;
+		}
+		return result;
 	}
 }
