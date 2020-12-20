@@ -29,5 +29,6 @@
   	<module>es.uclm.esi.isoft2.a02.restaurant.table_booking</module>
   	<module>es.uclm.esi.isoft2.a02.restaurant.dependencies</module>
   	<module>es.uclm.esi.isoft2.a02.restaurant.statistics</module>
+	<module>es.uclm.esi.isoft2.a02.restaurant.making_orders</module>
   </modules>
 </project>
