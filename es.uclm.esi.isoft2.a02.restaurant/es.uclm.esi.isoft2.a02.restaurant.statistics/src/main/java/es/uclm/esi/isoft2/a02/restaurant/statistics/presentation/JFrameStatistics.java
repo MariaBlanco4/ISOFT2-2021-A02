@@ -131,9 +131,9 @@ public class JFrameStatistics extends JFrame {
 
 	public void showStatistics() throws Exception {
 		double [] stat= Control_statistics.getStatistics();
-		textPaneTakeCommand.setText(stat[0]+"");
-		textPanePreparationTime.setText(stat[1]+"");
-		textPaneDeliveryNote.setText(stat[2]+"");
-		textPaneTableFree.setText(stat[3]+"");
+		textPaneTakeCommand.setText(String.format("%.2f", stat[0]));
+		textPanePreparationTime.setText(String.format("%.2f", stat[1]));
+		textPaneDeliveryNote.setText(String.format("%.2f", stat[2]));
+		textPaneTableFree.setText(String.format("%.2f", stat[3]));
 	}
 }
