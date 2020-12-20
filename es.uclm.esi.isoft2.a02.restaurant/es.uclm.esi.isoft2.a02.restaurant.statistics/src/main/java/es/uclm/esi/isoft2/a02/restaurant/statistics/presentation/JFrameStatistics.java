@@ -15,6 +15,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class JFrameStatistics extends JFrame {
 
@@ -23,6 +25,7 @@ public class JFrameStatistics extends JFrame {
 	private JTextField textPanePreparationTime;
 	private JTextField textPaneDeliveryNote;
 	private JTextField textPaneTableFree;
+	private JFrame frmStat;
 
 	/**
 	 * Launch the application.
@@ -32,7 +35,7 @@ public class JFrameStatistics extends JFrame {
 			public void run() {
 				try {
 					JFrameStatistics frame = new JFrameStatistics();
-					frame.setVisible(true);
+					frame.getFrame().setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -45,12 +48,13 @@ public class JFrameStatistics extends JFrame {
 	 * @throws Exception 
 	 */
 	public JFrameStatistics() throws Exception {
-		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 527, 403);
+		frmStat = new JFrame();
+		frmStat.setResizable(false);
+		frmStat.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmStat.setBounds(100, 100, 527, 403);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		frmStat.getContentPane().add(contentPane);
 		contentPane.setLayout(null);
 
 		JLabel lblTakeCommand = new JLabel("Average time to take command:");
@@ -102,7 +106,14 @@ public class JFrameStatistics extends JFrame {
 		contentPane.add(textPaneTableFree);
 
 		JButton btnBack = new JButton("Back ");
-		btnBack.setBounds(204, 304, 117, 25);
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrameLogin login = new JframeLogin();
+				login.show();
+				frmStat.dispose();
+			}
+		});
+		btnBack.setBounds(142, 304, 117, 25);
 		contentPane.add(btnBack);
 
 		JLabel lblSecond = new JLabel("s");
@@ -124,8 +135,19 @@ public class JFrameStatistics extends JFrame {
 		lblSecond_1_1_1.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblSecond_1_1_1.setBounds(428, 255, 70, 15);
 		contentPane.add(lblSecond_1_1_1);
-
-		showStatistics();
+		
+		JButton btnLoadStatistics = new JButton("Load statistics");
+		btnLoadStatistics.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					showStatistics();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		btnLoadStatistics.setBounds(301, 304, 153, 25);
+		contentPane.add(btnLoadStatistics);
 
 	}
 
@@ -135,5 +157,9 @@ public class JFrameStatistics extends JFrame {
 		textPanePreparationTime.setText(String.format("%.2f", stat[1]));
 		textPaneDeliveryNote.setText(String.format("%.2f", stat[2]));
 		textPaneTableFree.setText(String.format("%.2f", stat[3]));
+	}
+	
+	public JFrame getFrame() {
+		return frmStat;
 	}
 }
