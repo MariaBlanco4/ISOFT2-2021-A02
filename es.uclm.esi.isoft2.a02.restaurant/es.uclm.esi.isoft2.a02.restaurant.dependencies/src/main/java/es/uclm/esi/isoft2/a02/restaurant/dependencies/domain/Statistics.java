@@ -6,10 +6,10 @@ import es.uclm.esi.isoft2.a02.restaurant.dependencies.persistence.Broker;
 
 public class Statistics {
 	
-	private double takeCommand;
-	private double preparationTimeMeal;
-	private double timeDeliveryNote;
-	private double preparationTimeTable;
+	private double takeCommand=0;
+	private double preparationTimeMeal=0;
+	private double timeDeliveryNote=0;
+	private double preparationTimeTable=0;
 	
 	public double getTakeCommand() {
 		return takeCommand;
