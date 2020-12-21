@@ -11,8 +11,7 @@ public class Drink {
 	private String name;
 	private double price;
 	private int amount;
-	private int threshold;
-	
+
 	public String getName() {
 		return this.name;
 	}
@@ -44,7 +43,7 @@ public class Drink {
 		if (vBroker.size() >= 1) {
 			auxVector = (Vector<Object>) vBroker.elementAt(0);
 			auxDrink = new Drink((String) auxVector.elementAt(0), (Double) auxVector.elementAt(1), 
-									(Integer) auxVector.elementAt(2), (Integer) auxVector.elementAt(3));
+									(Integer) auxVector.elementAt(2));
 		}
 		return auxDrink;
 	}
@@ -66,15 +65,10 @@ public class Drink {
 	 * @param price
 	 * @param amount
 	 */
-	public Drink(String name, double price, int amount, int threshold) {
+	public Drink(String name, double price, int amount) {
 		this.name = name;
 		this.price = price;
 		this.amount = amount;
-		this.threshold = threshold;
-	}
-
-	public int getThreshold() {
-		return threshold;
 	}
 
 	public int getAmount() {
@@ -87,7 +81,7 @@ public class Drink {
 	 * @param amount
 	 */
 	public int updateDrink(String name, int amount) throws SQLException, Exception{
-		String sql = "UPDATE Drink SET amount=" + amount + " WHERE name='" + name + "';"; //Mirar si está bien lo de las comillas en name.
+		String sql = "UPDATE Drink SET amount=" + amount + " WHERE name='" + name + "' ;"; //Mirar si está bien lo de las comillas en name.
 		return Broker.getBroker().update(sql);
 	}
 

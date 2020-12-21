@@ -10,7 +10,6 @@ import org.junit.Test;
 
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.persistence.Broker;
 
-
 public class DrinkTest {
 
 	static Drink dr0;
@@ -18,8 +17,8 @@ public class DrinkTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		dr0 = new Drink("cola", 2, 10, 3);
-		dr1 = new Drink("fanta", 2, 0, 3);
+		dr0 = new Drink("cola", 2, 10);
+		dr1 = new Drink("fanta", 2, 0);
 	}
 
 	@AfterClass
