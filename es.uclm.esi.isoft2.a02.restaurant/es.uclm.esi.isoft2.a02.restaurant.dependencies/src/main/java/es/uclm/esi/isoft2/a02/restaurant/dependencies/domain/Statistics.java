@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.persistence.Broker;
 
+
 public class Statistics {
 	
 	private double takeCommand=0;

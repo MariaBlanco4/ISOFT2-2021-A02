@@ -3,6 +3,8 @@ package es.uclm.esi.isoft2.a02.restaurant.dependencies.domain;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+
+
 public class Control_operational_table {
 	public static boolean changeState(State new_state, int n_table, String date, Turn turn) throws Exception {
 		Calendar calendar = new GregorianCalendar();
