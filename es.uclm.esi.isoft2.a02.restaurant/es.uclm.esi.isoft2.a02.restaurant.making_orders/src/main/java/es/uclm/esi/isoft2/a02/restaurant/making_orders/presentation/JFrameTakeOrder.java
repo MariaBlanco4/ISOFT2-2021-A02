@@ -1,6 +1,6 @@
 package es.uclm.esi.isoft2.a02.restaurant.making_orders.presentation;
 
-import java.awt.BorderLayout;     
+import java.awt.BorderLayout;    
 import java.awt.EventQueue;
 
 import javax.swing.ButtonGroup;
@@ -132,29 +132,12 @@ public class JFrameTakeOrder extends JFrame {
 	private JButton btnSendMessage;
 	private JButton btnGetMessage;
 	private JTextField spTable;
-	private static JFrame frame;
 
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frame = new JFrameTakeOrder();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	/**
 	 * Create the frame.
 	 * @throws ParseException 
 	 */
-	public JFrameTakeOrder() throws ParseException{
+	public JFrameTakeOrder(User actualUser) throws ParseException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1036, 808);
 		contentPane = new JPanel();
@@ -691,6 +674,7 @@ public class JFrameTakeOrder extends JFrame {
 		gbc_textID_USER.gridy = 19;
 		contentPane.add(textID_USER, gbc_textID_USER);
 		textID_USER.setColumns(10);
+		textID_USER.setText(actualUser.getId() + "");
 		
 		btnSendMessage = new JButton("Send message");
 		btnSendMessage.addActionListener(new ActionListener() {
@@ -770,12 +754,8 @@ public class JFrameTakeOrder extends JFrame {
 		int result = Control_order.checkOrder(Integer.parseInt(spTable.getText()),textDate.getText(), turn,drinks, dishes );
 		if(result == 0) {
 			showMessageDialog(null, "Order insert");
-		}else if(result == -1){
-			showMessageDialog(null, "Error making the order, something goes wrong");
-		}else if(result == -2) {
-			showMessageDialog(null, "Error, some ingredient or drink doesn't exist");
-		}else if(result == -3) {
-			showMessageDialog(null, "No enough drink or food, we are replacing it");
+		}else {
+			showMessageDialog(null, "Error while inserting");
 		}
 	}
 	

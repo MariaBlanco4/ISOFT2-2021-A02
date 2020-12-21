@@ -3,6 +3,7 @@ package es.uclm.esi.isoft2.a02.restaurant.making_orders.domain;
 import java.sql.SQLException;
 
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.Operational_table;
+import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.Order;
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.State;
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.Turn;
 
