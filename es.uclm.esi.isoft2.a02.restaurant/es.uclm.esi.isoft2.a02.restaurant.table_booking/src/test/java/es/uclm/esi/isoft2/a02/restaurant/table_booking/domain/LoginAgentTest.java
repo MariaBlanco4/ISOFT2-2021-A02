@@ -1,6 +1,7 @@
 package es.uclm.esi.isoft2.a02.restaurant.table_booking.domain;
 
 import static org.junit.Assert.*;
+import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.User; 
 
 import org.junit.After;
 import org.junit.AfterClass;

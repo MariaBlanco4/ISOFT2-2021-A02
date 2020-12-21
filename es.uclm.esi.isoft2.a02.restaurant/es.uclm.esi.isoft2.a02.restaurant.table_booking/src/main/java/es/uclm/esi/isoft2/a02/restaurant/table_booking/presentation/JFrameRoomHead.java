@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.Control_operational_table;
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.State;
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.Turn;
+import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.User;
 import es.uclm.esi.isoft2.a02.restaurant.table_booking.domain.ReserveAgent;
 
 import javax.swing.JLabel;
@@ -54,8 +55,9 @@ public class JFrameRoomHead extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				User user = new User();
 				try {
-					JFrameRoomHead frame = new JFrameRoomHead();
+					JFrameRoomHead frame = new JFrameRoomHead(user);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,7 +69,7 @@ public class JFrameRoomHead extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JFrameRoomHead() {
+	public JFrameRoomHead(User user) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1500, 1000);
 		contentPane = new JPanel();
