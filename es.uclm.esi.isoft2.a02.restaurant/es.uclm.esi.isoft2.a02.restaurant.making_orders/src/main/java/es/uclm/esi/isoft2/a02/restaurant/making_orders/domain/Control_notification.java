@@ -1,6 +1,6 @@
 package es.uclm.esi.isoft2.a02.restaurant.making_orders.domain;
 
-import java.sql.SQLException; 
+import java.sql.SQLException;  
 import java.util.ArrayList;
 
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.User;
