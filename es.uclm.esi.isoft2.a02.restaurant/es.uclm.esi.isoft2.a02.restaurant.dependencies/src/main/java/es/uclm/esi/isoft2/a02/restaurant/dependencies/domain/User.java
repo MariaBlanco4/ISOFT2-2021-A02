@@ -6,6 +6,10 @@ import java.util.Vector;
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.persistence.Broker;
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> Merge
 public class User {
 
 	private int id;
@@ -24,6 +28,13 @@ public class User {
 		this.position = position;
 	}
 
+<<<<<<< HEAD
+=======
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
+>>>>>>> Merge
 	public int getId() {
 		return this.id;
 	}
