@@ -194,5 +194,4 @@ public class Operational_table {
 		String sql = "UPDATE Operational_table SET n_table=" + n_table + ", date='" + date + "', turn='" + turn + "', lastTimeStateChanged='" + actualTime + "';";
 		return Broker.getBroker().update(sql);
 	}
-
 }

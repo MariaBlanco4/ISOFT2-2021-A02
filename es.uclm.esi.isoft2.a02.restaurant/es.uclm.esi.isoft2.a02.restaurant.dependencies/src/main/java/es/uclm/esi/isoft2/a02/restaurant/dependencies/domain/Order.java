@@ -1,5 +1,7 @@
 package es.uclm.esi.isoft2.a02.restaurant.dependencies.domain;
 
+import java.sql.SQLException;
+import java.util.Vector;
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.persistence.Broker;
 
 public class Order {
@@ -23,13 +25,27 @@ public class Order {
 	 * @param id_operational_table
 	 * @param date
 	 */
-	public Order(String[] drinks, String[] starters, String[] firstCourses, String[] secondCourses, String[] desserts, int id_operational_table, String date) {
+
+	public Order(String[] drinks, String[] starters, String[] firstCourses, String[] secondCourses, 
+			String[] desserts, int id_operational_table, String date) {
 		super();
-		this.drinks = drinks;
-		this.starters = starters;
-		this.firstCourses = firstCourses;
-		this.secondCourses = secondCourses;
-		this.desserts = desserts;
+		
+		for(int i =0; i<6;i++) {
+			this.drinks[i] = drinks[i];
+		}
+		for(int i =0; i<6;i++) {
+			this.starters[i] = starters[i];
+		}
+		for(int i =0; i<6;i++) {
+			this.firstCourses[i] = firstCourses[i];
+		}
+		for(int i =0; i<6;i++) {
+			this.secondCourses[i] = secondCourses[i];
+		}
+		for(int i =0; i<6;i++) {
+			this.desserts[i] = desserts[i];
+		}
+
 		this.id_operational_table = id_operational_table;
 		this.date = date;
 	}
@@ -277,6 +293,56 @@ public class Order {
 			}
 		}
 	}
+
+
+	public static Order read(int id_operational_table) throws SQLException, Exception {
+		String sql = "SELECT * FROM Order WHERE n_table=" + id_operational_table + ";";
+		Order auxOrderTable = null;
+		Vector<Object> auxVector;
+		Vector<Object> vBroker = Broker.getBroker().select(sql);
+		
+		if (vBroker.size() >= 1){
+        	auxVector = (Vector<Object>) vBroker.elementAt(0);
+        	String [] drinks = new String[6];
+        	for ( int i = 3; i < 9; i++) {
+        		drinks[i-3] = (String) auxVector.elementAt(i);
+        	}
+        	String [] starters = new String[6];
+        	for ( int i = 9; i < 15; i++) {
+        		starters[i-9] = (String) auxVector.elementAt(i);
+        	}
+        	String [] first_course = new String[6];
+        	for ( int i = 15; i < 21; i++) {
+        		first_course[i-15] = (String) auxVector.elementAt(i);
+        	}
+        	String [] second_course = new String[6];
+        	for ( int i = 21; i < 27; i++) {
+        		second_course[i-21] = (String) auxVector.elementAt(i);
+        	}
+        	String [] desserts = new String[6];
+        	for ( int i = 27; i < 33; i++) {
+        		desserts[i-27] = (String) auxVector.elementAt(i);
+        	}
+        	auxOrderTable = new Order(drinks, starters, first_course, second_course, 
+        			desserts, (Integer) auxVector.elementAt(1), (String) auxVector.elementAt(2));
+    	} 
+        return auxOrderTable;
+	}
+	
+	/*public static Operational_table read(int n_table, String date, Turn turn) throws Exception {
+		String sql ="SELECT * FROM Operational_table WHERE n_table=" + n_table + " AND turn='" + turn + "' AND date='"+ date +"';";
+		Operational_table auxOpTable = null;
+		Vector<Object> auxVector;
+		Vector<Object> vBroker = Broker.getBroker().select(sql); 
+		
+		auxVector = new Vector<Object>();
+
+        if (vBroker.size() >= 1){
+        	auxVector = (Vector<Object>) vBroker.elementAt(0);
+        	auxOpTable = new Operational_table((Integer) auxVector.elementAt(0), Turn.valueOf(Turn.class, auxVector.elementAt(1).toString()), State.valueOf(State.class, auxVector.elementAt(2).toString()), (String) auxVector.elementAt(3), (Integer) auxVector.elementAt(4));
+    	} 
+        return auxOpTable;	
+	}*/
 
 	
 }
