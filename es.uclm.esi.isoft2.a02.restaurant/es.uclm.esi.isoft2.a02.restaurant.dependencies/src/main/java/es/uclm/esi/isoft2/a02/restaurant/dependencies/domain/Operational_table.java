@@ -26,6 +26,7 @@ public class Operational_table {
 		this.lastTimeStateChanged = lastTimeStateChanged;
 	}
 	
+
 	public Operational_table(int n_table, Turn turn, State state, String date, int n_chairs, int waiter) {
 		this.n_table=n_table;
 		this.turn=turn;
@@ -183,6 +184,7 @@ public class Operational_table {
 		return auxOpTable;
 		
 	}
+
 	
 	public String getlastTimeStateChanged() {
 		return this.lastTimeStateChanged; 
@@ -192,5 +194,4 @@ public class Operational_table {
 		String sql = "UPDATE Operational_table SET n_table=" + n_table + ", date='" + date + "', turn='" + turn + "', lastTimeStateChanged='" + actualTime + "';";
 		return Broker.getBroker().update(sql);
 	}
-
 }
