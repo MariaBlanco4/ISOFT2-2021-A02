@@ -6,11 +6,8 @@ import java.util.Vector;
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.Turn;
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.persistence.Broker;
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> Merge
 public class Table {
 
 	private int n_table;
@@ -52,8 +49,4 @@ public class Table {
 	public int getN_table() {
 		return this.n_table;
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> Merge
