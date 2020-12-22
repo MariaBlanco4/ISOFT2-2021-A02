@@ -1,10 +1,7 @@
 package es.uclm.esi.isoft2.a02.restaurant.table_booking.domain;
 
-<<<<<<< HEAD
-import java.sql.SQLException; 
-=======
 import java.sql.SQLException;
->>>>>>> Merge
+
 
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.User;
 
