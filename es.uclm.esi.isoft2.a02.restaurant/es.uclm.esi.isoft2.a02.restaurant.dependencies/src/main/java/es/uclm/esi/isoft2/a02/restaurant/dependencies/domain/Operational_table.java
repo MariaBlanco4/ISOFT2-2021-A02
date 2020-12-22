@@ -4,7 +4,10 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.persistence.Broker;
+<<<<<<< HEAD
+=======
 
+>>>>>>> Merge
 public class Operational_table {
 
 	private int n_table;
@@ -13,6 +16,9 @@ public class Operational_table {
 	private String date;
 	private int n_chairs;
 	private int waiter = 0;
+<<<<<<< HEAD
+
+=======
 	private String lastTimeStateChanged;
 	
 	public Operational_table(int n_table, Turn turn, State state, String date, int n_chairs, int waiter, String lastTimeStateChanged) {
@@ -25,6 +31,7 @@ public class Operational_table {
 		this.lastTimeStateChanged = lastTimeStateChanged;
 	}
 	
+>>>>>>> Merge
 	public Operational_table(int n_table, Turn turn, State state, String date, int n_chairs, int waiter) {
 		this.n_table=n_table;
 		this.turn=turn;
@@ -182,6 +189,8 @@ public class Operational_table {
 		return auxOpTable;
 		
 	}
+<<<<<<< HEAD
+=======
 	
 	public String getlastTimeStateChanged() {
 		return this.lastTimeStateChanged; 
@@ -191,4 +200,5 @@ public class Operational_table {
 		String sql = "UPDATE Operational_table SET n_table=" + n_table + ", date='" + date + "', turn='" + turn + "', lastTimeStateChanged='" + actualTime + "';";
 		return Broker.getBroker().update(sql);
 	}
+>>>>>>> Merge
 }
