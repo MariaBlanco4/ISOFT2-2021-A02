@@ -29,7 +29,6 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public int getId() {
 		return this.id;
 	}

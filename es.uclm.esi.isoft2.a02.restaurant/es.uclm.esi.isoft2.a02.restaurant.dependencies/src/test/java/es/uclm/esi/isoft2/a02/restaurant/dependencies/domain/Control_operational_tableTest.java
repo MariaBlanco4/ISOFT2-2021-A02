@@ -2,10 +2,7 @@ package es.uclm.esi.isoft2.a02.restaurant.dependencies.domain;
 
 import static org.junit.Assert.*;
 
-
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -39,7 +36,6 @@ public class Control_operational_tableTest {
 		assertEquals(true,Control_operational_table.changeState(State.valueOf(State.class, "Free"), 6, "11/04/2021", Turn.valueOf(Turn.class, "T_Lunch")));
 		assertEquals(true,Control_operational_table.changeState(State.valueOf(State.class, "Busy"), 6, "12/04/2021", Turn.valueOf(Turn.class, "T_Lunch")));
 		assertEquals(false,Control_operational_table.changeState(State.valueOf(State.class, "Waiting"), 6, "13/04/2021", Turn.valueOf(Turn.class, "T_Lunch")));
-
 	}
 
 	@Test

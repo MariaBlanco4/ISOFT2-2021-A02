@@ -1,6 +1,6 @@
 package es.uclm.esi.isoft2.a02.restaurant.table_booking.domain;
 
-import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.Operational_table; 
+import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.Operational_table;
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.State;
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.Turn;
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.User;
