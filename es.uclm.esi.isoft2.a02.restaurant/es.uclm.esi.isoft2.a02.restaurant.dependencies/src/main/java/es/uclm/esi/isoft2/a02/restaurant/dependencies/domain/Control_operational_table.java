@@ -81,8 +81,9 @@ public class Control_operational_table {
 		}
 		return result;
 	}
-
+	
 	public static int deleteReserve(int n_table, Turn turn, String date) throws Exception {
 		return Operational_table.delete(n_table, turn, date);
 	}
+	
 }
