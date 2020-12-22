@@ -2,7 +2,6 @@ package es.uclm.esi.isoft2.a02.restaurant.dependencies.domain;
 
 import java.sql.SQLException;
 import java.util.Vector;
-
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.persistence.Broker;
 
 public class Order {
@@ -26,6 +25,7 @@ public class Order {
 	 * @param id_operational_table
 	 * @param date
 	 */
+
 	public Order(String[] drinks, String[] starters, String[] firstCourses, String[] secondCourses, 
 			String[] desserts, int id_operational_table, String date) {
 		super();
@@ -45,6 +45,7 @@ public class Order {
 		for(int i =0; i<6;i++) {
 			this.desserts[i] = desserts[i];
 		}
+
 		this.id_operational_table = id_operational_table;
 		this.date = date;
 	}
@@ -54,7 +55,6 @@ public class Order {
 		this.id_operational_table = id_operational_table;
 		this.date = date;
 	}
-
 
 
 	public int getOrderID() {
@@ -293,6 +293,7 @@ public class Order {
 			}
 		}
 	}
+
 
 	public static Order read(int id_operational_table) throws SQLException, Exception {
 		String sql = "SELECT * FROM Order WHERE n_table=" + id_operational_table + ";";
