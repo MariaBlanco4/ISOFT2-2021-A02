@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.persistence.Broker;
+
 public class Operational_table {
 
 	private int n_table;
@@ -12,6 +13,19 @@ public class Operational_table {
 	private String date;
 	private int n_chairs;
 	private int waiter = 0;
+
+	private String lastTimeStateChanged;
+	
+	public Operational_table(int n_table, Turn turn, State state, String date, int n_chairs, int waiter, String lastTimeStateChanged) {
+		this.n_table=n_table;
+		this.turn=turn;
+		this.state=state;
+		this.date=date;
+		this.n_chairs=n_chairs;
+		this.waiter=waiter;
+		this.lastTimeStateChanged = lastTimeStateChanged;
+	}
+	
 
 	public Operational_table(int n_table, Turn turn, State state, String date, int n_chairs, int waiter) {
 		this.n_table=n_table;
@@ -169,5 +183,15 @@ public class Operational_table {
 		} 
 		return auxOpTable;
 		
+	}
+
+	
+	public String getlastTimeStateChanged() {
+		return this.lastTimeStateChanged; 
+	}
+	
+	public int updateLastTimeStateChanged(int n_table, String date, Turn turn, String actualTime) throws Exception{
+		String sql = "UPDATE Operational_table SET n_table=" + n_table + ", date='" + date + "', turn='" + turn + "', lastTimeStateChanged='" + actualTime + "';";
+		return Broker.getBroker().update(sql);
 	}
 }
