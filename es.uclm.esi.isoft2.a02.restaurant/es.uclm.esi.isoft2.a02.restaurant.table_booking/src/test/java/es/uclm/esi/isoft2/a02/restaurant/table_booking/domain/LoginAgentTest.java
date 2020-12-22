@@ -2,12 +2,19 @@ package es.uclm.esi.isoft2.a02.restaurant.table_booking.domain;
 
 import static org.junit.Assert.*;
 
+<<<<<<< HEAD
+=======
+import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.User; 
+>>>>>>> Merge
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+<<<<<<< HEAD
 
+=======
+>>>>>>> Merge
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.User;
 
 public class LoginAgentTest {

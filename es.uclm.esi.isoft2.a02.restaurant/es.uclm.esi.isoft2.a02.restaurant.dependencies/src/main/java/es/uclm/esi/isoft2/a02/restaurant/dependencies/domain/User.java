@@ -24,6 +24,15 @@ public class User {
 		this.position = position;
 	}
 
+<<<<<<< HEAD
+=======
+
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+>>>>>>> Merge
 	public int getId() {
 		return this.id;
 	}
@@ -115,4 +124,8 @@ public class User {
 		}
 		return auxUser;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Merge
