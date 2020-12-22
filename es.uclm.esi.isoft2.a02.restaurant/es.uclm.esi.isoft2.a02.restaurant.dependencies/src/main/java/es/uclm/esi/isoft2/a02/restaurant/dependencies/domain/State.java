@@ -9,4 +9,8 @@ public enum State {
 	Waiting,
 	Paying,
 	In_preparation
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Merge
