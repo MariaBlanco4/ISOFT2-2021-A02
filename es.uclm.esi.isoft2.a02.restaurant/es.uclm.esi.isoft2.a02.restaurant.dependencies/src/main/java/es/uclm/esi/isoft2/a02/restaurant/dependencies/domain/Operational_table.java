@@ -42,6 +42,14 @@ public class Operational_table {
 		this.date=date;
 		this.n_chairs=n_chairs;
 	}
+	public Operational_table(int n_table, Turn turn, State state, String date, int n_chairs, String lastTimeStateChanged) {
+		this.n_table=n_table;
+		this.turn=turn;
+		this.state=state;
+		this.date=date;
+		this.n_chairs=n_chairs;
+		this.lastTimeStateChanged = lastTimeStateChanged;
+	}
 	
 	public State getState() {
 		return this.state;
@@ -100,7 +108,7 @@ public class Operational_table {
 	 * @param n_chairs
 	 */
 	public int insertTable(Turn turn, int n_table, State state, String date, int n_chairs) throws Exception {
-		String sql = "INSERT INTO Operational_table VALUES (" + n_table + ",'" + turn + "','" + state + "', '"+ date +"'," + n_chairs + ", null);";
+		String sql = "INSERT INTO Operational_table (n_table, turn, state, date, n_chairs, waiter) VALUES (" + n_table + ",'" + turn + "','" + state + "', '"+ date +"'," + n_chairs + ", null);";
 		return Broker.getBroker().insert(sql);
 	}
 
@@ -120,7 +128,7 @@ public class Operational_table {
 
         if (vBroker.size() >= 1){
         	auxVector = (Vector<Object>) vBroker.elementAt(0);
-        	auxOpTable = new Operational_table((Integer) auxVector.elementAt(0), Turn.valueOf(Turn.class, auxVector.elementAt(1).toString()), State.valueOf(State.class, auxVector.elementAt(2).toString()), (String) auxVector.elementAt(3), (Integer) auxVector.elementAt(4));
+        	auxOpTable = new Operational_table((Integer) auxVector.elementAt(0), Turn.valueOf(Turn.class, auxVector.elementAt(1).toString()), State.valueOf(State.class, auxVector.elementAt(2).toString()), (String) auxVector.elementAt(3), (Integer) auxVector.elementAt(4), (String) auxVector.elementAt(6));
     	} 
         return auxOpTable;	
 	}

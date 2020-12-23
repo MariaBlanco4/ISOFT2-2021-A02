@@ -29,45 +29,46 @@ public class Control_operational_table {
 				} catch (Exception e) {
 					result = false;
 				}
-			}
+				
+				String[] parts_lastTC = lastTC.split(":");
+				String[] parts_actTime = actTime.split(":");
+				double differenceTime = (Double.parseDouble(parts_actTime[0]) * 3600
+						+ Double.parseDouble(parts_actTime[1]) * 60 + Double.parseDouble(parts_actTime[2]))
+						- (Double.parseDouble(parts_lastTC[0]) * 3600 + Double.parseDouble(parts_lastTC[1]) * 60
+								+ Double.parseDouble(parts_lastTC[2]));
 
-			String[] parts_lastTC = lastTC.split(":");
-			String[] parts_actTime = actTime.split(":");
-			double differenceTime = (Double.parseDouble(parts_actTime[0]) * 3600
-					+ Double.parseDouble(parts_actTime[1]) * 60 + Double.parseDouble(parts_actTime[2]))
-					- (Double.parseDouble(parts_lastTC[0]) * 3600 + Double.parseDouble(parts_lastTC[1]) * 60
-							+ Double.parseDouble(parts_lastTC[2]));
-
-			if (opt.getState() == State.Asking && new_state == State.Waiting_for_food) {
-				try {
-					Statistics.insertStatistics("take_command", differenceTime);
-				} catch (Exception e) {
-					result = false;
+				if (opt.getState() == State.Asking && new_state == State.Waiting_for_food) {
+					try {
+						Statistics.insertStatistics("take_command", differenceTime);
+					} catch (Exception e) {
+						result = false;
+					}
 				}
-			}
 
-			if (opt.getState() == State.Waiting_for_food && new_state == State.Served) {
-				try {
-					Statistics.insertStatistics("preparation_time_meal", differenceTime);
-				} catch (Exception e) {
-					result = false;
+				if (opt.getState() == State.Waiting_for_food && new_state == State.Served) {
+					try {
+						Statistics.insertStatistics("preparation_time_meal", differenceTime);
+					} catch (Exception e) {
+						result = false;
+					}
 				}
-			}
 
-			if (opt.getState() == State.Waiting && new_state == State.Paying) {
-				try {
-					Statistics.insertStatistics("time_delivery_note", differenceTime);
-				} catch (Exception e) {
-					result = false;
+				if (opt.getState() == State.Waiting && new_state == State.Paying) {
+					try {
+						Statistics.insertStatistics("time_delivery_note", differenceTime);
+					} catch (Exception e) {
+						result = false;
+					}
 				}
-			}
 
-			if (opt.getState() == State.In_preparation && new_state == State.Free) {
-				try {
-					Statistics.insertStatistics("preparation_time_table", differenceTime);
-				} catch (Exception e) {
-					result = false;
+				if (opt.getState() == State.In_preparation && new_state == State.Free) {
+					try {
+						Statistics.insertStatistics("preparation_time_table", differenceTime);
+					} catch (Exception e) {
+						result = false;
+					}
 				}
+				
 			}
 
 			if (new_state.equals(State.Free)) {
