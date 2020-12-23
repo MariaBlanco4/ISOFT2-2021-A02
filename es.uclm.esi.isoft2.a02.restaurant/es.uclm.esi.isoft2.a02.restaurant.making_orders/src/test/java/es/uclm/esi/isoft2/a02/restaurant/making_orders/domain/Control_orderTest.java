@@ -43,9 +43,7 @@ public class Control_orderTest {
 		Broker.getBroker().update("UPDATE Ingredient SET amount=3 WHERE name='butter';");
 		Broker.getBroker().update("UPDATE Drink SET amount=3 WHERE name='hidromiel';");
 		Broker.getBroker().insert("INSERT INTO A02dbservice.Operational_table VALUES (6, 'T_Lunch', 'Asking', '17/04/2022', 6, 1);");
-		
-		
-		
+
 		dish0[0] = "tortilla";
 		dish0[1] = "carrot_cream";
 		dish0[2] = "oreo_shake";
@@ -87,10 +85,6 @@ public class Control_orderTest {
 		Broker.getBroker().update("UPDATE Ingredient SET amount=10 WHERE name='spine';");
 		Broker.getBroker().update("UPDATE Ingredient SET amount=10 WHERE name='sugar';");
 		Broker.getBroker().update("UPDATE Ingredient SET amount=10 WHERE name='vegetables_soup';");
-	
-		
-		
-		
 	}
 
 	@Test
@@ -101,14 +95,10 @@ public class Control_orderTest {
 		assertEquals(-1, Control_order.checkOrder(6, "19/04/2021", Turn.T_Lunch, drink1, dish2));
 		assertEquals(-1, Control_order.checkOrder(6, "20/04/2021", Turn.T_Lunch, drink1, dish2));
 		assertEquals(-1, Control_order.checkOrder(10, "20/04/2021", Turn.T_Lunch, drink1, dish2));
-		
 		//Testing of iteration 3
 		assertEquals(-3, Control_order.checkOrder(6, "17/04/2022", Turn.T_Lunch, drink3, dish3));
 		assertEquals(-1, Control_order.checkOrder(6, "17/04/2022", Turn.T_Lunch, drink3, dish4));
 		assertEquals(-1, Control_order.checkOrder(6, "17/04/2022", Turn.T_Lunch, drink4, dish3));
-		
-		
-		
 	}
 
 }

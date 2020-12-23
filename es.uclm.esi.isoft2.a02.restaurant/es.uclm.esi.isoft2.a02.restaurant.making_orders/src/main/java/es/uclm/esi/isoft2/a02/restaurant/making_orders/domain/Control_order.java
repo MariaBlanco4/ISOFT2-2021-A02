@@ -90,7 +90,6 @@ public class Control_order {
 						break;
 					}
 				}
-
 				for(int i = 0 ; i < dishes.length && order != -1 && dishes!=null;  i++) {
 					if((ds = Dish.readDish(dishes[i])) != null) {
 						current_ingredients =ds.getIngredients();

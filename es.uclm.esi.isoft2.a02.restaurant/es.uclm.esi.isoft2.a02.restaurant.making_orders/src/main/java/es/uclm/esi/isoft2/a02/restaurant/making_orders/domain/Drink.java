@@ -12,7 +12,7 @@ public class Drink {
 	private double price;
 	private int amount;
 	private int threshold;
-	
+  
 	public String getName() {
 		return this.name;
 	}
@@ -45,6 +45,7 @@ public class Drink {
 			auxVector = (Vector<Object>) vBroker.elementAt(0);
 			auxDrink = new Drink((String) auxVector.elementAt(0), (Double) auxVector.elementAt(1), 
 									(Integer) auxVector.elementAt(2), (Integer) auxVector.elementAt(3));
+
 		}
 		return auxDrink;
 	}
