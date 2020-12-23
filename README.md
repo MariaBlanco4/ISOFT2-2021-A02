@@ -42,7 +42,8 @@ Depending on which user you log in with, you will appear in the interface of :
  
  
 
-And without access like no other user we can access the statistics
+And without access like no other user we can access the statisticsç
+
  ![estadisticas](https://user-images.githubusercontent.com/72667996/102995998-85260c80-4522-11eb-8479-013cc3b0c851.png)
  
 
