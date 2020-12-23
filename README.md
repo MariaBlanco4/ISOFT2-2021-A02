@@ -29,7 +29,7 @@ Depending on which user you log in with, you will appear in the interface of :
  
  * Making  the order: if you access as waiter 
  
- 
+ ![MAKINGORDERS](https://user-images.githubusercontent.com/72667996/102996499-8572d780-4523-11eb-9b43-efbf5729e23f.png)
 
  
  
