@@ -26,7 +26,7 @@ public class LoginAgentTest {
 
 	@Test
 	public void testVerifyLogin() throws Exception {
-		assertEquals(u, LoginAgent.VerifyLogin(1,"jose","waiter"));
+		assertEquals(u.getClass(), LoginAgent.VerifyLogin(1,"jose","waiter").getClass());
 		assertEquals(null, LoginAgent.VerifyLogin(1,"marcos","waiter"));
 	}
 

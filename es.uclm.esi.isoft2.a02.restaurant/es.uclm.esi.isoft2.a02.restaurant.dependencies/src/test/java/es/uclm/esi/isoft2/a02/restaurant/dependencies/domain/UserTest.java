@@ -36,5 +36,4 @@ public class UserTest {
 		assertEquals(User.class, User.read(1).getClass());
 		assertEquals(null, User.read(18));
 	}
-
 }

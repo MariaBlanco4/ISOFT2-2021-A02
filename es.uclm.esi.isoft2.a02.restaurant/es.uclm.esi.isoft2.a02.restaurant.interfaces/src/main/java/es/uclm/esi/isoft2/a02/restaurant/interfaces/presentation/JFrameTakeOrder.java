@@ -1,6 +1,6 @@
 package es.uclm.esi.isoft2.a02.restaurant.interfaces.presentation;
 
-import java.awt.BorderLayout;     
+import java.awt.BorderLayout;    
 import java.awt.EventQueue;
 
 import javax.swing.ButtonGroup;
@@ -132,6 +132,7 @@ public class JFrameTakeOrder extends JFrame {
 	private JButton btnSendMessage;
 	private JButton btnGetMessage;
 	private JTextField spTable;
+	private JButton btnBill;
 	private static JFrameTakeOrder frame;
 
 	/**
@@ -584,6 +585,26 @@ public class JFrameTakeOrder extends JFrame {
 		gbc_btnChangeState.gridy = 14;
 		contentPane.add(btnChangeState, gbc_btnChangeState);
 		
+		btnBill = new JButton("Print bill");
+		btnBill.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					printBill();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		GridBagConstraints gbc_btnBill = new GridBagConstraints();
+		gbc_btnBill.insets = new Insets(0, 0, 5, 0);
+		gbc_btnBill.gridx = 5;
+		gbc_btnBill.gridy = 14;
+		contentPane.add(btnBill, gbc_btnBill);
+		
 		lblPoorPeopleBeer = new JLabel("Poor people beer");
 		GridBagConstraints gbc_lblPoorPeopleBeer = new GridBagConstraints();
 		gbc_lblPoorPeopleBeer.insets = new Insets(0, 0, 5, 5);
@@ -763,7 +784,6 @@ public class JFrameTakeOrder extends JFrame {
 			showMessageDialog(null, "No enough drink or food, we are replacing it");
 		}else {
 			showMessageDialog(null, "Error while inserting");
-
 		}
 	}
 	
@@ -869,5 +889,20 @@ public class JFrameTakeOrder extends JFrame {
 		}else {
 			showMessageDialog(null, "No notifications for this user");
 		}
+	}
+	public void printBill() throws SQLException, Exception {
+		double bill = 0;
+		Turn turn = getTurn();
+		int n_table = Integer.parseInt(spTable.getText());
+		String date =  textDate.getText();
+		bill = Control_order.charge_order(n_table, date, turn);
+		if(bill == 0) {
+			showMessageDialog(null, "Error printing the bill");
+		}else if (bill > 0) {
+			showMessageDialog(null, "Total bill: "+bill);
+		}
+		Control_operational_table.changeState(State.Waiting, n_table, date, turn);
+		Control_operational_table.changeState(State.In_preparation, n_table, date, turn);
+		Control_operational_table.changeState(State.Free, n_table, date, turn);
 	}
 }

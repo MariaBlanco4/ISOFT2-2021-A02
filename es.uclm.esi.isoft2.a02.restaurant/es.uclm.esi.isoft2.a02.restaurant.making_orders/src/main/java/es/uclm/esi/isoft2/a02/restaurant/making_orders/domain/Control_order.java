@@ -136,6 +136,7 @@ public class Control_order {
 					}
 				}
 				if(order !=-1 &&  order !=-3 &&  order !=-2)
+
 				if((od.insertOrder(od.getDrinks(), od.getStarters(), od.getFirstCourses(), od.getSecondCourses(),
 								od.getDesserts(), n_table, date)) == 0) {
 					order = -1;
@@ -149,5 +150,68 @@ public class Control_order {
 		} else order=-1;
 		
 		return order;
+	}
+	
+	public static int charge_order (int id_operational_table, String date, Turn turn) throws SQLException, Exception {
+		int price = 0;
+		Order order = null;
+		try {
+			order= Order.read(id_operational_table);
+		}catch(Exception e) {
+			order = null;
+			price = 0;
+		}
+		
+		for (int i=0; i<6; i++){
+			Dish dish = null;
+			try {
+				dish = Dish.readDish(order.getStarters()[i]);
+			}catch(Exception e) {
+				break;
+			}
+			price += dish.getPrice();
+		}
+		
+		for (int i=0; i<6; i++){
+			Dish dish = null;
+			try {
+				dish = Dish.readDish(order.getFirstCourses()[i]);
+			}catch(Exception e) {
+				break;
+			}
+			price += dish.getPrice();
+		}
+		
+		for (int i=0; i<6; i++){
+			Dish dish = null;
+			try {
+				dish = Dish.readDish(order.getSecondCourses()[i]);
+			}catch(Exception e) {
+				break;
+			}
+			price += dish.getPrice();
+		}
+		
+		for (int i=0; i<6; i++){
+			Dish dish = null;
+			try {
+				dish = Dish.readDish(order.getDesserts()[i]);
+			}catch(Exception e) {
+				break;
+			}
+			price += dish.getPrice();
+		}
+		
+		for (int i=0; i<6; i++){
+			Drink drink = null;
+			try {
+				drink = Drink.readDrink(order.getDrinks()[i]);
+			}catch(Exception e) {
+				break;
+			}
+			price += drink.getPrice();
+		}
+			
+		return price;
 	}
 }

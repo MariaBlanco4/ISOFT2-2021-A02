@@ -33,6 +33,7 @@ public class Broker {
                 aux.add(res.getObject(i));
             }
             vectoradevolver.add(aux);
+
         }
         stmt.close();
         return vectoradevolver;

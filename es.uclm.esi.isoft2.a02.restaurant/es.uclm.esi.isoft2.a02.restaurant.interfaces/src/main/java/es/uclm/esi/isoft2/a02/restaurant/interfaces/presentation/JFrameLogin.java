@@ -142,7 +142,7 @@ public class JFrameLogin extends JFrame {
 				rh.show();
 				frame.dispose();
 			}else if(user.getPosition().equalsIgnoreCase("waiter")) {
-				JFrameTakeOrder tk = new JFrameTakeOrder();
+				JFrameTakeOrder tk = new JFrameTakeOrder(user);
 				tk.show();
 				frame.dispose();
 			}

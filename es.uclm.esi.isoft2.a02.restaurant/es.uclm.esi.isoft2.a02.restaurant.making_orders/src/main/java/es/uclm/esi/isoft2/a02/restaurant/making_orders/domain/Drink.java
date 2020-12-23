@@ -12,7 +12,7 @@ public class Drink {
 	private double price;
 	private int amount;
 	private int threshold;
-  
+
 	public String getName() {
 		return this.name;
 	}
@@ -88,7 +88,7 @@ public class Drink {
 	 * @param amount
 	 */
 	public int updateDrink(String name, int amount) throws SQLException, Exception{
-		String sql = "UPDATE Drink SET amount=" + amount + " WHERE name='" + name + "';"; //Mirar si está bien lo de las comillas en name.
+		String sql = "UPDATE Drink SET amount=" + amount + " WHERE name='" + name + "' ;"; //Mirar si está bien lo de las comillas en name.
 		return Broker.getBroker().update(sql);
 	}
 

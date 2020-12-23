@@ -11,7 +11,6 @@ import org.junit.Test;
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.persistence.Broker;
 import es.uclm.esi.isoft2.a02.restaurant.making_orders.domain.Drink;
 
-
 public class DrinkTest {
 
 	static Drink dr0;
