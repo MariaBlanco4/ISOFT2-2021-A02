@@ -56,7 +56,6 @@ public class Order {
 	}
 
 
-
 	public int getOrderID() {
 		return this.orderID;
 	}
@@ -327,21 +326,5 @@ public class Order {
     	} 
         return auxOrderTable;
 	}
-	
-	/*public static Operational_table read(int n_table, String date, Turn turn) throws Exception {
-		String sql ="SELECT * FROM Operational_table WHERE n_table=" + n_table + " AND turn='" + turn + "' AND date='"+ date +"';";
-		Operational_table auxOpTable = null;
-		Vector<Object> auxVector;
-		Vector<Object> vBroker = Broker.getBroker().select(sql); 
-		
-		auxVector = new Vector<Object>();
-
-        if (vBroker.size() >= 1){
-        	auxVector = (Vector<Object>) vBroker.elementAt(0);
-        	auxOpTable = new Operational_table((Integer) auxVector.elementAt(0), Turn.valueOf(Turn.class, auxVector.elementAt(1).toString()), State.valueOf(State.class, auxVector.elementAt(2).toString()), (String) auxVector.elementAt(3), (Integer) auxVector.elementAt(4));
-    	} 
-        return auxOpTable;	
-	}*/
-
 	
 }

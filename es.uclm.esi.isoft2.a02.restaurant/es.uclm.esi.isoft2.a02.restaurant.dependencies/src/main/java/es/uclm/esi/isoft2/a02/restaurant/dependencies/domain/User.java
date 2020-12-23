@@ -24,6 +24,9 @@ public class User {
 		this.position = position;
 	}
 
+	public User() {
+	}
+
 	public int getId() {
 		return this.id;
 	}

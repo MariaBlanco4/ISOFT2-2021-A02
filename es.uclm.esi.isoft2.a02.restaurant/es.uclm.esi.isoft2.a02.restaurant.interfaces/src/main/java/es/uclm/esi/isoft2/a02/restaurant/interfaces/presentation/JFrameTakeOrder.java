@@ -133,6 +133,7 @@ public class JFrameTakeOrder extends JFrame {
 	private JButton btnGetMessage;
 	private JTextField spTable;
 	private JButton btnBill;
+	private static JFrameTakeOrder frame;
 
 	/**
 	 * Create the frame.
@@ -775,6 +776,12 @@ public class JFrameTakeOrder extends JFrame {
 		int result = Control_order.checkOrder(Integer.parseInt(spTable.getText()),textDate.getText(), turn,drinks, dishes );
 		if(result == 0) {
 			showMessageDialog(null, "Order insert");
+		}else if(result == -1){
+			showMessageDialog(null, "Error making the order, something goes wrong");
+		}else if(result == -2) {
+			showMessageDialog(null, "Error, some ingredient or drink doesn't exist");
+		}else if(result == -3) {
+			showMessageDialog(null, "No enough drink or food, we are replacing it");
 		}else {
 			showMessageDialog(null, "Error while inserting");
 		}
@@ -883,7 +890,6 @@ public class JFrameTakeOrder extends JFrame {
 			showMessageDialog(null, "No notifications for this user");
 		}
 	}
-	
 	public void printBill() throws SQLException, Exception {
 		double bill = 0;
 		Turn turn = getTurn();
@@ -899,5 +905,4 @@ public class JFrameTakeOrder extends JFrame {
 		Control_operational_table.changeState(State.In_preparation, n_table, date, turn);
 		Control_operational_table.changeState(State.Free, n_table, date, turn);
 	}
-	
 }

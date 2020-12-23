@@ -1,4 +1,4 @@
-package es.uclm.esi.isoft2.a02.restaurant.dependencies.domain;
+package es.uclm.esi.isoft2.a02.restaurant.dependencies;
 
 import static org.junit.Assert.*;
 
@@ -9,7 +9,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.instanceOf;
 
-
+import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.Operational_table;
+import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.State;
+import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.Turn;
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.persistence.Broker;
 
 public class Operational_tableTest {
@@ -52,36 +54,50 @@ public class Operational_tableTest {
 	public final void testInsertTable() throws Exception {
 		assertEquals(1,operationalTable.insertTable(Turn.T_Lunch,6,State.Reserved,"25/04/2021",6));
 		assertEquals(0,operationalTable.insertTable(Turn.valueOf(Turn.class, "T_Lunch"),6,State.valueOf(State.class, "Reserved"),"16/04/2021",6));
+		
+		//fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	public final void testRead() throws Exception {
 		assertEquals(Operational_table.class,operationalTable4.readWaiter("21/04/2021",6,  Turn.valueOf(Turn.class, "T_Lunch"), 2).getClass());
 		assertEquals(null,operationalTable4.readWaiter("20/04/2021",6,  Turn.valueOf(Turn.class, "T_Lunch"), 2));
+		
+		
+		//fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	public final void testDelete() throws Exception {
 		assertEquals(1,operationalTable1.delete(6, Turn.valueOf(Turn.class, "T_Lunch"), "17/04/2021"));
 		assertEquals(0,operationalTable1.delete(6, Turn.valueOf(Turn.class, "T_Lunch"), "20/04/2021"));
+		
+		//fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	public final void testUpdateW() throws Exception {
 		assertEquals(1,operationalTable2.updateW(6, "18/04/2021", Turn.valueOf(Turn.class, "T_Lunch"), 1));
 		assertEquals(0,operationalTable2.updateW(6, "20/04/2021", Turn.valueOf(Turn.class, "T_Lunch"), 1));
+		
+		//fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	public final void testUpdateS() throws Exception {
 		assertEquals(1,operationalTable2.updateS(6, "19/04/2021", Turn.valueOf(Turn.class, "T_Lunch"), State.valueOf(State.class, "Busy")));
 		assertEquals(0,operationalTable2.updateS(6, "20/04/2021", Turn.valueOf(Turn.class, "T_Lunch"), State.valueOf(State.class, "Busy")));
+		
+		//fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	public final void testReadWaiter() throws Exception {
 		assertEquals(Operational_table.class,operationalTable3.readWaiter("21/04/2021",6,  Turn.valueOf(Turn.class, "T_Lunch"), 2).getClass());
 		assertEquals(null,operationalTable3.readWaiter("20/04/2021",6,  Turn.valueOf(Turn.class, "T_Lunch"), 2));
+		
+		
+		//fail("Not yet implemented"); // TODO
 	}
 
 }

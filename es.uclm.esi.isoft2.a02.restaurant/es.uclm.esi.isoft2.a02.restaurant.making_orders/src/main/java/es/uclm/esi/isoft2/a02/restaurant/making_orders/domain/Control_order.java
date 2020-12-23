@@ -38,7 +38,7 @@ public class Control_order {
 			state = ot.getState();
 			if(state == State.Asking) {
 				od = new Order(n_table, date); //Here we need to create the Order object
-				for(int i = 0 ; i < dishes.length && order != -1 || dishes[i+1]!=null; i++) {
+				for(int i = 0 ; (i < dishes.length && order != -1 && order != -3) || ((i<(dishes.length-1) && dishes[i+1]!=null)); i++) {
 					ds = Dish.readDish(dishes[i]);
 					if(ds != null) {
 						current_ingredients = ds.getIngredients(); //Array of each ingredient
@@ -68,7 +68,7 @@ public class Control_order {
 						order = -1;
 						break;
 					}
-					if(dishes[i+1]==null && i<(dishes.length-1)) {
+					if(i < dishes.length && i<(dishes.length-1) && dishes[i+1]==null) {
 						break;
 					}
 				}
@@ -81,18 +81,26 @@ public class Control_order {
 						}else {
 							od.addDrink(dr.getName());
 						}
-					} if(drinks[i+1]==null && i<(drinks.length-1)) {
+					} else {
+						order=-1;
+						break;
+					}
+					
+					if(i<(drinks.length-1) && drinks[i+1]==null) {
 						break;
 					}
 				}
-				
 				for(int i = 0 ; i < dishes.length && order != -1 && dishes!=null;  i++) {
 					if((ds = Dish.readDish(dishes[i])) != null) {
 						current_ingredients =ds.getIngredients();
 						for(int j=0 ; j<current_ingredients.length && order != -1; j++) {
 							if((ing = Ingredient.readIngredient(current_ingredients[i])) != null) {
-								if(!ing.checkAmountIngredient()) {
-									order = -1;
+								if(ing.getAmount() <= ing.getThreshold()) {//if of iteration 3
+									if((ing.updateIngredient(ing.getName(), 20)) == 0) {
+										order = -3;
+										break;
+									}
+									order = -3;
 									break;
 								}else {
 									if((ing.updateIngredient(ing.getName(), (ing.getAmount()-1))) == 0) {
@@ -100,31 +108,35 @@ public class Control_order {
 										break;
 									}
 								}
-							} if(dishes[i+1]==null && i<(dishes.length-1)){
+							} if(i<(dishes.length-1) && dishes[i+1]==null){
 								break;
 							}
 						}
-						
 					}
 				}
 				
-				for(int i = 0 ; i <drinks.length && order != -1 && drinks!=null; i++) {
+				for(int i = 0 ; i <drinks.length && order != -1 && order != -2 && order != -3 && drinks!=null; i++) {
 					if((dr = Drink.readDrink(drinks[i])) != null) {
-						if(!dr.checkAmountDrink()) {
-							order = -1;
+						if(dr.getAmount() <= dr.getThreshold()) {//if iteration 3
+							if((dr.updateDrink(dr.getName(), 20)) == 0) {
+								order = -3;
+								break;
+							}
+							order = -3;
 							break;
 						}else {
-							if((dr.updateDrink(dr.getName(), (dr.getAmount()-1))) == 0){
+							if((dr.updateDrink(dr.getName(), (dr.getAmount()-1))) == 0) {
 								order = -1;
 								break;
 							}
 						}
 					}
-					if (drinks[i+1]==null && i<(drinks.length-1)) {
+					if (i<drinks.length-1 && drinks[i+1]==null) {
 						break;
 					}
 				}
-				
+				if(order !=-1 &&  order !=-3 &&  order !=-2)
+
 				if((od.insertOrder(od.getDrinks(), od.getStarters(), od.getFirstCourses(), od.getSecondCourses(),
 								od.getDesserts(), n_table, date)) == 0) {
 					order = -1;

@@ -135,6 +135,7 @@ public class JFrameLogin extends JFrame {
 				txtfPosition.getText());
 		if (user == null) {
 			lblState.setText("Introduce again");
+		} else {
 			lblState.setText("Login success");
 			if (user.getPosition().equalsIgnoreCase("room head")) {
 				JFrameRoomHead rh = new JFrameRoomHead();
@@ -147,7 +148,4 @@ public class JFrameLogin extends JFrame {
 			}
 		}
 	}
-
 }
-
-

@@ -11,6 +11,7 @@ public class Drink {
 	private String name;
 	private double price;
 	private int amount;
+	private int threshold;
 
 	public String getName() {
 		return this.name;
@@ -43,7 +44,8 @@ public class Drink {
 		if (vBroker.size() >= 1) {
 			auxVector = (Vector<Object>) vBroker.elementAt(0);
 			auxDrink = new Drink((String) auxVector.elementAt(0), (Double) auxVector.elementAt(1), 
-									(Integer) auxVector.elementAt(2));
+									(Integer) auxVector.elementAt(2), (Integer) auxVector.elementAt(3));
+
 		}
 		return auxDrink;
 	}
@@ -65,10 +67,15 @@ public class Drink {
 	 * @param price
 	 * @param amount
 	 */
-	public Drink(String name, double price, int amount) {
+	public Drink(String name, double price, int amount, int threshold) {
 		this.name = name;
 		this.price = price;
 		this.amount = amount;
+		this.threshold = threshold;
+	}
+
+	public int getThreshold() {
+		return threshold;
 	}
 
 	public int getAmount() {

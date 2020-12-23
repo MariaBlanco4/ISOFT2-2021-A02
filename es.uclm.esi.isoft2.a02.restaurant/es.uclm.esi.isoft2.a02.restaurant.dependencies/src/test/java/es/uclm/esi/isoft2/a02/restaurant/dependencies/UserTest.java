@@ -1,4 +1,4 @@
-package es.uclm.esi.isoft2.a02.restaurant.dependencies.domain;
+package es.uclm.esi.isoft2.a02.restaurant.dependencies;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.User;
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.persistence.Broker;
 
 public class UserTest {
@@ -23,17 +24,24 @@ public class UserTest {
 	@Test
 	public final void testReadPosition() throws Exception, Exception {
 		assertEquals(userArray.getClass(),User.readPosition("waiter").getClass());
+	
+		//fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	public final void testReadUser() throws SQLException, Exception {
 		assertEquals(User.class, User.readUser(1, "jose", "waiter").getClass());
 		assertEquals(null, User.readUser(1, "marco", "waiter"));
+		
+		//fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	public final void testRead() throws SQLException, Exception {
 		assertEquals(User.class, User.read(1).getClass());
 		assertEquals(null, User.read(18));
+		
+		//fail("Not yet implemented"); // TODO
 	}
+
 }

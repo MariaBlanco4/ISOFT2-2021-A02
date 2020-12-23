@@ -26,12 +26,14 @@ public class Broker {
         Statement stmt = mBD.createStatement();
         ResultSet res=stmt.executeQuery(SQL);
         Vector<Object> vectoradevolver=new Vector<Object>();
+
         while (res.next()) {
             aux=new Vector<Object>();
             for(int i=1;i<=res.getMetaData().getColumnCount();i++){
                 aux.add(res.getObject(i));
-                vectoradevolver.add(aux);
             }
+            vectoradevolver.add(aux);
+
         }
         stmt.close();
         return vectoradevolver;

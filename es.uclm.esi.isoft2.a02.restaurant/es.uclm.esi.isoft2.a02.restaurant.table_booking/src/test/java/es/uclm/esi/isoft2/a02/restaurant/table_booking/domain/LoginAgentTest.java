@@ -1,13 +1,12 @@
 package es.uclm.esi.isoft2.a02.restaurant.table_booking.domain;
 
 import static org.junit.Assert.*;
-
+import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.User; 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import es.uclm.esi.isoft2.a02.restaurant.dependencies.domain.User;
 
 public class LoginAgentTest {
@@ -27,7 +26,7 @@ public class LoginAgentTest {
 
 	@Test
 	public void testVerifyLogin() throws Exception {
-		assertEquals(u, LoginAgent.VerifyLogin(1,"jose","waiter"));
+		assertEquals(u.getClass(), LoginAgent.VerifyLogin(1,"jose","waiter").getClass());
 		assertEquals(null, LoginAgent.VerifyLogin(1,"marcos","waiter"));
 	}
 
