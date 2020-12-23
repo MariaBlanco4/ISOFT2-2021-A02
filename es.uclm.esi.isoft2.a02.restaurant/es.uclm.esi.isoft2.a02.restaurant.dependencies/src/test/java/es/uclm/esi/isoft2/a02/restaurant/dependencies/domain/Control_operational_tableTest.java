@@ -45,5 +45,4 @@ public class Control_operational_tableTest {
 		assertEquals(1,Control_operational_table.deleteReserve(6,  Turn.valueOf(Turn.class, "T_Lunch"), "10/04/2021")); 
 		assertEquals(0,Control_operational_table.deleteReserve(6,  Turn.valueOf(Turn.class, "T_Lunch"), "20/04/2021"));
 	}
-
 }

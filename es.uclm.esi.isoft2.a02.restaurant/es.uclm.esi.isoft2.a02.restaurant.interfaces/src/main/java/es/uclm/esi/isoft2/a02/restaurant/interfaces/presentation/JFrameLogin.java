@@ -114,7 +114,7 @@ public class JFrameLogin extends JFrame {
 				}
 			}
 		});
-		btnEnter.setBounds(844, 490, 117, 25);
+		btnEnter.setBounds(844, 490, 149, 25);
 		panel.add(btnEnter);
 
 		JButton btnClear = new JButton("Clear");
@@ -126,8 +126,24 @@ public class JFrameLogin extends JFrame {
 				lblState.setText("");
 			}
 		});
-		btnClear.setBounds(535, 490, 117, 25);
+		btnClear.setBounds(698, 490, 117, 25);
 		panel.add(btnClear);
+		
+		JButton btnShowStatistics = new JButton("Show statistics");
+		btnShowStatistics.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrameStatistics st = null;
+				try {
+					st = new JFrameStatistics();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				st.getFrame().show();
+				frame.dispose();
+			}
+		});
+		btnShowStatistics.setBounds(512, 490, 149, 25);
+		panel.add(btnShowStatistics);
 	}
 
 	public void login() throws NumberFormatException, SQLException, Exception {
@@ -138,7 +154,7 @@ public class JFrameLogin extends JFrame {
 		} else {
 			lblState.setText("Login success");
 			if (user.getPosition().equalsIgnoreCase("room head")) {
-				JFrameRoomHead rh = new JFrameRoomHead();
+				JFrameRoomHead rh = new JFrameRoomHead(user);
 				rh.show();
 				frame.dispose();
 			}else if(user.getPosition().equalsIgnoreCase("waiter")) {
