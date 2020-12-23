@@ -30,8 +30,8 @@ public class Broker {
             aux=new Vector<Object>();
             for(int i=1;i<=res.getMetaData().getColumnCount();i++){
                 aux.add(res.getObject(i));
-                vectoradevolver.add(aux);
             }
+            vectoradevolver.add(aux);
         }
         stmt.close();
         return vectoradevolver;

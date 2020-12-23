@@ -157,9 +157,11 @@ public class JFrameLogin extends JFrame {
 				JFrameRoomHead rh = new JFrameRoomHead(user);
 				rh.show();
 				frame.dispose();
+			}else if(user.getPosition().equalsIgnoreCase("waiter")) {
+				JFrameTakeOrder tk = new JFrameTakeOrder(user);
+				tk.show();
+				frame.dispose();
 			}
 		}
 	}
 }
-
-

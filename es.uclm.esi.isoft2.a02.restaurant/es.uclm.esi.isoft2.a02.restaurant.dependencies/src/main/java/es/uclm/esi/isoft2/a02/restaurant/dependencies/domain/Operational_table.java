@@ -13,6 +13,7 @@ public class Operational_table {
 	private String date;
 	private int n_chairs;
 	private int waiter = 0;
+
 	private String lastTimeStateChanged;
 	
 	public Operational_table(int n_table, Turn turn, State state, String date, int n_chairs, int waiter, String lastTimeStateChanged) {
@@ -24,7 +25,7 @@ public class Operational_table {
 		this.waiter=waiter;
 		this.lastTimeStateChanged = lastTimeStateChanged;
 	}
-	
+
 	public Operational_table(int n_table, Turn turn, State state, String date, int n_chairs, int waiter) {
 		this.n_table=n_table;
 		this.turn=turn;

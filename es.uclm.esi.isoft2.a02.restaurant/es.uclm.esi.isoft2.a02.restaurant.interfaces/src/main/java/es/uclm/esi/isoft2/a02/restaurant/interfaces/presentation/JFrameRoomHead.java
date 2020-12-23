@@ -50,23 +50,6 @@ public class JFrameRoomHead extends JFrame {
 	private final ButtonGroup buttonGroup_6 = new ButtonGroup();
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				User user = new User();
-				try {
-					JFrameRoomHead frame = new JFrameRoomHead(user);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public JFrameRoomHead(User user) {
