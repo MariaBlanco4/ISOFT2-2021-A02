@@ -137,14 +137,15 @@ public class JFrameLogin extends JFrame {
 			lblState.setText("Introduce again");
 		} else {
 			lblState.setText("Login success");
-			if (user.getPosition().equalsIgnoreCase("waiter")) {
+			if (user.getPosition().equalsIgnoreCase("room head")) {
 				JFrameRoomHead rh = new JFrameRoomHead();
 				rh.show();
-				frame.setVisible(false);
+				frame.dispose();
+			}else if(user.getPosition().equalsIgnoreCase("waiter")) {
+				JFrameTakeOrder tk = new JFrameTakeOrder();
+				tk.show();
+				frame.dispose();
 			}
 		}
 	}
-
 }
-
-

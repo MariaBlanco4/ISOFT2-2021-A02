@@ -134,25 +134,6 @@ public class JFrameTakeOrder extends JFrame {
 	private JTextField spTable;
 	private static JFrameTakeOrder frame;
 
-	
-	/**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                	User user = new User();
-                    frame = new JFrameTakeOrder(user);
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-	
-	
 	/**
 	 * Create the frame.
 	 * @throws ParseException 
@@ -774,8 +755,15 @@ public class JFrameTakeOrder extends JFrame {
 		int result = Control_order.checkOrder(Integer.parseInt(spTable.getText()),textDate.getText(), turn,drinks, dishes );
 		if(result == 0) {
 			showMessageDialog(null, "Order insert");
+		}else if(result == -1){
+			showMessageDialog(null, "Error making the order, something goes wrong");
+		}else if(result == -2) {
+			showMessageDialog(null, "Error, some ingredient or drink doesn't exist");
+		}else if(result == -3) {
+			showMessageDialog(null, "No enough drink or food, we are replacing it");
 		}else {
 			showMessageDialog(null, "Error while inserting");
+
 		}
 	}
 	
